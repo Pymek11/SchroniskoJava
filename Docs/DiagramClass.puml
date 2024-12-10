@@ -5,12 +5,8 @@ class Animal {
     - Weight: float
     - Breed: string
     - Description: string
+    - Species: string
     - Picture
-}
-
-class Cat {
-}
-class Dog {
 }
 
 class User {
@@ -43,8 +39,7 @@ class Request {
     + ApproveRequest()
 }
 
-Animal <|-- Cat
-Animal <|-- Dog
+
 User <|-- Employee
 Shelter o-- Animal
 Shelter o-- Employee
