@@ -1,54 +1,24 @@
 @startuml
-class Animal {
-    - ID: int
-    - Age: int
-    - Weight: float
-    - Breed: string
-    - Description: string
-    - Picture
+actor User
+actor Employee as Worker
+
+rectangle ShelterSystem {
+    usecase "View Animals" as UC_ViewAnimals
+    usecase "Adopt Animal" as UC_AdoptAnimal
+    usecase "Submit Adoption Request" as UC_SubmitRequest
+    usecase "Manage Animals" as UC_ManageAnimals
+    usecase "Review Requests" as UC_ReviewRequests
+    usecase "Approve Adoption Request" as UC_ApproveRequest
 }
 
-class Cat {
-}
-class Dog {
-}
+User --> UC_ViewAnimals
+User --> UC_AdoptAnimal
+User --> UC_SubmitRequest
 
-class User {
-    - Name: string
-    - Address: string
-    - Email: string
-    + ViewAnimals()
-    + AdoptAnimal()
-}
+Worker --> UC_ManageAnimals
+Worker --> UC_ReviewRequests
+Worker --> UC_ApproveRequest
 
-class Employee {
-    + AddAnimal()
-    + ModifyAnimal()
-    + ViewRequests()
-    + ApproveRequests()
-}
+UC_ReviewRequests --> UC_ApproveRequest
 
-class Shelter {
-    - AnimalList: List<Animal>
-    - EmployeeList: List<Employee>
-    - RequestList: List<Request>
-    + ManageAdoptions()
-    + AddEmployee()
-}
-
-class Request {
-    - UserInfo: User
-    - Animal: Animal
-    + SubmitRequest()
-    + ApproveRequest()
-}
-
-Animal <|-- Cat
-Animal <|-- Dog
-User <|-- Employee
-Shelter o-- Animal
-Shelter o-- Employee
-Shelter o-- Request
-Request *-- User
-Request *-- Animal
 @enduml

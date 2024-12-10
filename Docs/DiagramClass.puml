@@ -1,0 +1,54 @@
+@startuml
+class Animal {
+    - ID: int
+    - Age: int
+    - Weight: float
+    - Breed: string
+    - Description: string
+    - Picture
+}
+
+class Cat {
+}
+class Dog {
+}
+
+class User {
+    - Name: string
+    - Address: string
+    - Email: string
+    + ViewAnimals()
+    + AdoptAnimal()
+}
+
+class Employee {
+    + AddAnimal()
+    + ModifyAnimal()
+    + ViewRequests()
+    + ApproveRequests()
+}
+
+class Shelter {
+    - AnimalList: List<Animal>
+    - EmployeeList: List<Employee>
+    - RequestList: List<Request>
+    + ManageAdoptions()
+    + AddEmployee()
+}
+
+class Request {
+    - UserInfo: User
+    - Animal: Animal
+    + SubmitRequest()
+    + ApproveRequest()
+}
+
+Animal <|-- Cat
+Animal <|-- Dog
+User <|-- Employee
+Shelter o-- Animal
+Shelter o-- Employee
+Shelter o-- Request
+Request *-- User
+Request *-- Animal
+@enduml
