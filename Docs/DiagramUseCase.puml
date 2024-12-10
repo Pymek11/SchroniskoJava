@@ -1,0 +1,24 @@
+@startuml
+actor User
+actor Employee as Worker
+
+rectangle ShelterSystem {
+    usecase "View Animals" as UC_ViewAnimals
+    usecase "Adopt Animal" as UC_AdoptAnimal
+    usecase "Submit Adoption Request" as UC_SubmitRequest
+    usecase "Manage Animals" as UC_ManageAnimals
+    usecase "Review Requests" as UC_ReviewRequests
+    usecase "Approve Adoption Request" as UC_ApproveRequest
+}
+
+User --> UC_ViewAnimals
+User --> UC_AdoptAnimal
+User --> UC_SubmitRequest
+
+Worker --> UC_ManageAnimals
+Worker --> UC_ReviewRequests
+Worker --> UC_ApproveRequest
+
+UC_AdoptAnimal --> UC_ViewAnimals
+UC_SubmitRequest --> UC_AdoptAnimal
+@enduml
