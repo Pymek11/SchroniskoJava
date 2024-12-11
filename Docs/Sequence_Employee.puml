@@ -1,0 +1,30 @@
+@startuml
+actor Employee as Worker
+participant ShelterSystem
+participant Animal
+participant Adoption
+
+== Employee adds a new animal ==
+Worker -> ShelterSystem: AddAnimal(AnimalDetails)
+ShelterSystem -> Animal: SaveAnimalDetails()
+Animal --> ShelterSystem: Success
+ShelterSystem --> Worker: AnimalAddedConfirmation
+
+== Employee modifies animal details ==
+Worker -> ShelterSystem: ModifyAnimal(AnimalID, NewDetails)
+ShelterSystem -> Animal: UpdateAnimalDetails(AnimalID, NewDetails)
+Animal --> ShelterSystem: UpdateSuccess
+ShelterSystem --> Worker: ModificationConfirmation
+
+== Employee reviews adoption requests ==
+Worker -> ShelterSystem: ViewRequests()
+ShelterSystem -> Adoption: RetrieveRequests()
+Adoption --> ShelterSystem: RequestsList
+ShelterSystem --> Worker: DisplayRequests
+
+== Employee approves adoption request ==
+Worker -> ShelterSystem: ApproveRequest(RequestID)
+ShelterSystem -> Adoption: ApproveRequest(RequestID)
+Adoption --> ShelterSystem: ApprovalSuccess
+ShelterSystem --> Worker: ApprovalConfirmation
+@enduml

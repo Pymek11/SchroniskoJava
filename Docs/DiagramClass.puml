@@ -1,11 +1,11 @@
 @startuml
 class Animal {
     - ID: int
+    - Species: string
+    - Breed: string
     - Age: int
     - Weight: float
-    - Breed: string
     - Description: string
-    - Species: string
     - Picture
 }
 
@@ -13,6 +13,7 @@ class User {
     - Name: string
     - Address: string
     - Email: string
+    - YourAdoptionResuests: List<Request>
     + ViewAnimals()
     + AdoptAnimal()
 }
@@ -27,23 +28,22 @@ class Employee {
 class Shelter {
     - AnimalList: List<Animal>
     - EmployeeList: List<Employee>
-    - RequestList: List<Request>
-    + ManageAdoptions()
+    - AdoptionList: List<Adoption>
+    + AddUser()
     + AddEmployee()
 }
 
-class Request {
-    - UserInfo: User
-    - Animal: Animal
-    + SubmitRequest()
-    + ApproveRequest()
+class Adoption {
+    - UserInfo:
+    - AnimalInfo:
+    - Status:
 }
 
 
 User <|-- Employee
 Shelter o-- Animal
 Shelter o-- Employee
-Shelter o-- Request
-Request *-- User
-Request *-- Animal
+Shelter o-- Adoption
+Adoption *-- User
+
 @enduml

@@ -1,0 +1,18 @@
+@startuml
+actor User
+participant ShelterSystem
+participant Animal
+participant Adoption
+
+== User views animals ==
+User -> ShelterSystem: ViewAnimals()
+ShelterSystem -> Animal: RetrieveAnimalList()
+Animal --> ShelterSystem: AnimalList
+ShelterSystem --> User: DisplayAnimalList()
+
+== User adopts an animal ==
+User -> ShelterSystem: AdoptAnimal(AnimalID)
+ShelterSystem -> Adoption: CreateAdoptionRequest(User, AnimalID)
+Adoption --> ShelterSystem: RequestCreated
+ShelterSystem --> User: AdoptionRequestConfirmation
+@enduml

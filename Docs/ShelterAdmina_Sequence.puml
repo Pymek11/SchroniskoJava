@@ -1,0 +1,18 @@
+@startuml
+actor Schelter_Admin as Admin
+participant ShelterSystem
+participant User as UserObject
+participant Employee as EmployeeObject
+
+== Admin adds a new user ==
+Admin -> ShelterSystem: AddUser(UserDetails)
+ShelterSystem -> UserObject: SaveUser(UserDetails)
+UserObject --> ShelterSystem: UserAdded
+ShelterSystem --> Admin: UserCreationConfirmation
+
+== Admin adds a new employee ==
+Admin -> ShelterSystem: AddEmployee(EmployeeDetails)
+ShelterSystem -> EmployeeObject: SaveEmployee(EmployeeDetails)
+EmployeeObject --> ShelterSystem: EmployeeAdded
+ShelterSystem --> Admin: EmployeeCreationConfirmation
+@enduml

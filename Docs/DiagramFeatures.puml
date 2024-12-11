@@ -1,19 +1,24 @@
 @startuml
 actor User
 actor Employee as Worker
+actor Schelter_Admin
 
 rectangle ShelterSystem {
     usecase "View Animals" as UC_ViewAnimals
     usecase "Adopt Animal" as UC_AdoptAnimal
-    usecase "Submit Adoption Request" as UC_SubmitRequest
+
     usecase "Manage Animals" as UC_ManageAnimals
     usecase "Review Requests" as UC_ReviewRequests
     usecase "Approve Adoption Request" as UC_ApproveRequest
+    usecase "Add User" as UC_AddUser
+    usecase "Add Employee" as UC_AddEmployee
 }
 
 User --> UC_ViewAnimals
 User --> UC_AdoptAnimal
-User --> UC_SubmitRequest
+
+Schelter_Admin --> UC_AddUser
+Schelter_Admin --> UC_AddEmployee
 
 Worker --> UC_ManageAnimals
 Worker --> UC_ReviewRequests
