@@ -9,13 +9,16 @@ public class Shelter {
     private List<Animal> animalList;
     private List<Employee> employeeList;
     private List<Adoption> adoptionList;
+    private List<User> userList;
 
     // Konstruktor
     public Shelter() {
         this.animalList = new ArrayList<>();
         this.employeeList = new ArrayList<>();
         this.adoptionList = new ArrayList<>();
+        this.userList = new ArrayList<>();
     };
+
     public Animal getAnimalListElem(int i){
         try {
             if(i<animalList.size()){
@@ -68,6 +71,22 @@ public class Shelter {
     public void addAdoptionApplicationToList(Adoption adoption){
         adoptionList.add(adoption);
     }
+    public User getUserListElem(int i){
+        try {
+            if(i<userList.size()){
+                return userList.get(i);
+            }else{
+                throw  new IndexOutOfBoundsException();
+            }
+
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Nie ma takiego elementu!!!");
+        }
+        return null;
+    }
+    public void addUserToList(Animal animal){
+        animalList.add(animal);
+    }
 
     // Zapis zwierząt do pliku csv
     public void saveAnimalListToCSV(String filename) {
@@ -88,6 +107,8 @@ public class Shelter {
             e.printStackTrace();
         }
     }
+
+
 
     // zapisz
     public void saveEmployeeListToCSV(String filename) {
@@ -116,7 +137,15 @@ public class Shelter {
             e.printStackTrace();
         }
     }
+    // Metoda do generowania ID w nowej klasie ??
 
+    // test
+    public static void main(String[] args) {
+        Shelter shelter= new Shelter();
+        Animal animal = new Animal(1,"Pies","Mieszaniec",4, 18.5F);
+        shelter.addAnimalToList(animal);
+        shelter.saveAnimalListToCSV("ListaZwierząt");
+    }
 
 }
 
