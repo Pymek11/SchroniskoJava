@@ -27,6 +27,11 @@ public class Shelter {
         }
         return null;
     }
+    public void addAnimalToList(Animal animal){
+        animalList.add(animal);
+    }
+
+
     public Employee getEmployeeListElem(int i){
         try {
             if(i<employeeList.size()){
@@ -40,6 +45,11 @@ public class Shelter {
         }
         return null;
     }
+    public void addEmployeeToList(Employee employee){
+        employeeList.add(employee);
+    }
+
+
     public Adoption getAdoptionListElem(int i){
         try {
             if(i<adoptionList.size()){
@@ -52,6 +62,9 @@ public class Shelter {
             System.out.println("Nie ma takiego elementu!!!");
         }
         return null;
+    }
+    public void addAdoptionApplicationToList(Adoption adoption){
+        adoptionList.add(adoption);
     }
 }
 
