@@ -29,6 +29,7 @@ class Shelter {
     - AnimalList: List<Animal>
     - EmployeeList: List<Employee>
     - AdoptionList: List<Adoption>
+    - UserList: List<User>
     + AddUser()
     + AddEmployee()
 }
