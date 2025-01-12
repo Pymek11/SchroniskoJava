@@ -1,7 +1,9 @@
 package Shelter;
 
+import java.util.Random;
+
 public class Animal {
-    private int ID;
+    private int id;
     private String species;
     private String breed;
     private int age;
@@ -11,8 +13,8 @@ public class Animal {
     // to do Zdjęcie;
 
     // Konstruktor nie ostawia opisu i zdjęcia
-    public Animal(int ID, String species, String breed, int age, float weight) {
-        this.ID = ID;
+    public Animal(String species, String breed, int age, float weight) {
+        this.id = generateID();
         this.species = species;
         this.breed = breed;
         this.age = age;
@@ -22,11 +24,11 @@ public class Animal {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getSpecies() {
@@ -75,5 +77,13 @@ public class Animal {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+    private int generateID() {
+        Random random = new Random();
+        return 100000 + random.nextInt(900000); // Losowe ID z przedziału 100000 - 999999
+    }
+
+    public int getId() {
+        return id;
     }
 }
