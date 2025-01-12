@@ -1,5 +1,6 @@
 @startuml
 class Animal {
+    - HasId; boolean
     - ID: int
     - Species: string
     - Breed: string
@@ -7,6 +8,7 @@ class Animal {
     - Weight: float
     - Description: string
     - Picture
+    +  generateId()
 }
 
 class User {
@@ -30,8 +32,23 @@ class Shelter {
     - EmployeeList: List<Employee>
     - AdoptionList: List<Adoption>
     - UserList: List<User>
-    + AddUser()
-    + AddEmployee()
+    + loadAnimalListFromCSV(String filename)
+    + loadEmployeeListFromCSV(String filename)
+    + loadAdoptionListFromCSV(String filename)
+    + loadUserListFromCSV(String filename)
+    + getAnimalListElem(int i)
+    + addAnimalToList(Animal animal)
+    + getEmployeeListElem(int i)
+    + addEmployeeToList(Employee employee)
+    + getAdoptionListElem(int i)
+    + addAdoptionApplicationToList(Adoption adoption)
+    + getUserListElem(int i)
+    + saveAnimalListToCSV(String filename)
+    + saveEmployeeListToCSV(String filename)
+    + saveAdoptionListToCSV(String filename)
+    + saveUserListToCSV(String filename)
+
+
 }
 
 class Adoption {

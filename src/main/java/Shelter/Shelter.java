@@ -18,7 +18,7 @@ public class Shelter {
         loadAnimalListFromCSV("ListaZwierzat");
         //loadEmployeeListFromCSV("ListaPracownikow");
         //loadAdoptionListFromCSV("ListaWnioskow");
-        //loadUserListFromCSV("ListaUzytkownikow");
+        loadUserListFromCSV("ListaUzytkownikow");
     }
 
     private void loadAnimalListFromCSV(String filename) {
@@ -28,7 +28,7 @@ public class Shelter {
             br.readLine(); // Pominięcie nagłówka
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                Animal animal = new Animal(data[1], data[2], Integer.parseInt(data[3]), Float.parseFloat(data[4]));
+                Animal animal = new Animal(true,Integer.parseInt(data[1]), data[2], data[3], Integer.parseInt(data[4]),Float.parseFloat(data[5]));
                 animalList.add(animal);
             }
 
@@ -44,7 +44,8 @@ public class Shelter {
             String line;
             br.readLine();
             while ((line = br.readLine()) != null) {
-                // TODO: Implementacja wczytywania pracowników
+               String[] data = line.split(",");
+               //ro do
             }
         } catch (IOException e) {
             System.out.println("Błąd podczas wczytywania listy pracowników z pliku CSV.");
@@ -73,7 +74,7 @@ public class Shelter {
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                User user = new User(data[0], data[1], data[2]);
+                User user = new User(true,data[1], data[2], data[3]);
                 userList.add(user);
             }
         } catch (IOException e) {
@@ -99,7 +100,6 @@ public class Shelter {
         animalList.add(animal);
     }
 
-
     public Employee getEmployeeListElem(int i){
         try {
             if(i<employeeList.size()){
@@ -117,7 +117,6 @@ public class Shelter {
         employeeList.add(employee);
     }
 
-
     public Adoption getAdoptionListElem(int i){
         try {
             if(i<adoptionList.size()){
@@ -134,6 +133,7 @@ public class Shelter {
     public void addAdoptionApplicationToList(Adoption adoption){
         adoptionList.add(adoption);
     }
+
     public User getUserListElem(int i){
         try {
             if(i<userList.size()){
@@ -151,13 +151,14 @@ public class Shelter {
         userList.add(user);
     }
 
-    // Zapis zwierząt do pliku csv
+    // Zapisz listy zwierzat do pliku csv
     public void saveAnimalListToCSV(String filename) {
         String filePath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("ID,Species,Breed,Age,Weight,Description,Picture\n"); // Nagłówki kolumn
+            writer.write("IdStatus,ID,Species,Breed,Age,Weight,Description,Picture\n"); // Nagłówki kolumn
             for (Animal animal : animalList) {
-                writer.write(animal.getID() + "," +
+                writer.write(animal.getHasId()+","+
+                        animal.getID() + "," +
                         animal.getSpecies() + "," +
                         animal.getBreed() + "," +
                         animal.getAge() + "," +
@@ -172,15 +173,12 @@ public class Shelter {
         }
     }
 
-
-
-    // zapisz
     public void saveEmployeeListToCSV(String filename) {
         String filePath = "src/main/resources/" + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write("dane + TODO!!!!!!!!!!!!!!!!!!!!!\n"); // Nagłówki kolumn
             for (Employee employee : employeeList) {
-                // to do
+               // to do
             }
             System.out.println("Lista pracowników została zapisana do pliku: " + filename);
         } catch (IOException e) {
@@ -189,7 +187,6 @@ public class Shelter {
         }
     }
 
-    // zapis adopcji do csv
     public void saveAdoptionListToCSV(String filename) {
         String filePath = "src/main/resources/" + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
@@ -208,29 +205,32 @@ public class Shelter {
     public void saveUserListToCSV(String filename) {
         String filePath = "src/main/resources/" + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("dane + TODO!!!!!!!!!!!!!!!!!!!!!\n"); // Nagłówki kolumn
+            writer.write("IDStatus,ID,Name,Address,Email,AdoptionId\n"); // Nagłówki kolumn
             for (User user : userList) {
-                continue;
+                writer.write(user.getHasId()+ ","+
+                        user.getId() + "," +
+                        user.getName() + ","+
+                        user.getAddress() + ","+
+                        user.getEmail()+ ","+
+                        user.getAdoptionIdList() +"\n");
             }
-            System.out.println("Lista zwierząt została zapisana do pliku: " + filename);
         } catch (IOException e) {
             System.out.println("Wystąpił błąd podczas zapisu do pliku CSV.");
             e.printStackTrace();
         }
     }
 
-    // Metoda do generowania ID w nowej klasie ??
 
-    // test
     public static void main(String[] args) {
         Shelter shelter= new Shelter();
-        Animal animal = new Animal("Pies","Mieszaniec",4, 18.5F);
-        User user = new User("Imię","Adress", "email");
+        Animal animal = new Animal(false,0,"Pies","Mieszaniec",4, 18.5F);
+        User user = new User(false,"Imię","Adress", "email");
+        shelter.addUserToList(user);
         shelter.addAnimalToList(animal);
         shelter.saveAnimalListToCSV("ListaZwierzat");
         //shelter.saveAdoptionListToCSV("ListaWnioskow");
         //shelter.saveEmployeeListToCSV("ListaPracownikow");
-       //shelter.saveUserListToCSV("ListaUzytkownikow");
+        shelter.saveUserListToCSV("ListaUzytkownikow");
     }
 
 }

@@ -3,6 +3,7 @@ package Shelter;
 import java.util.Random;
 
 public class Animal {
+    private boolean hasid;
     private int id;
     private String species;
     private String breed;
@@ -13,8 +14,14 @@ public class Animal {
     // to do Zdjęcie;
 
     // Konstruktor nie ostawia opisu i zdjęcia
-    public Animal(String species, String breed, int age, float weight) {
-        this.id = generateID();
+    public Animal(boolean hasid_,int id,String species, String breed, int age, float weight) {
+        if(!hasid_){
+            this.id = generateID();
+            this.hasid=true;
+        }else{
+            this.hasid=hasid_;
+            this.id=id;
+        }
         this.species = species;
         this.breed = breed;
         this.age = age;
@@ -23,6 +30,9 @@ public class Animal {
         this.picture= "";
     }
 
+    public boolean getHasId(){
+        return hasid;
+    }
     public int getID() {
         return id;
     }
@@ -80,10 +90,8 @@ public class Animal {
     }
     private int generateID() {
         Random random = new Random();
+        //this.hasid=true;
         return 100000 + random.nextInt(900000); // Losowe ID z przedziału 100000 - 999999
     }
 
-    public int getId() {
-        return id;
-    }
 }
