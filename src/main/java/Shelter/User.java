@@ -11,7 +11,7 @@ public class User {
     private int id;
     private List<Integer> adoptionIdList= new ArrayList<>();
 
-    public User(boolean hasid_, String name, String address, String email) {
+    public User(boolean hasid_,int id, String name, String address, String email) {
         if(!hasid_){
             this.id = generateID();
             this.hasid=true;
