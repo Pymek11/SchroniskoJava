@@ -46,7 +46,7 @@ public class Shelter {
             while ((line = br.readLine()) != null) {
                String[] data = line.split(",");
                 Employee employee = new Employee(true,Integer.parseInt(data[1]), data[2], data[3],data[4]);
-                employeeList.add(employee);
+                addEmployeeToList(employee);
             }
         } catch (IOException e) {
             System.out.println("Błąd podczas wczytywania listy pracowników z pliku CSV.");
@@ -60,7 +60,9 @@ public class Shelter {
             String line;
             br.readLine();
             while ((line = br.readLine()) != null) {
-                // TODO: Implementacja wczytywania adopcji
+                String[] data = line.split(",");
+                Adoption adoption = new Adoption(true,Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]));
+                addAdoptionApplicationToList(adoption);
             }
         } catch (IOException e) {
             System.out.println("Błąd podczas wczytywania listy adopcji z pliku CSV.");
@@ -76,7 +78,7 @@ public class Shelter {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 User user = new User(true,Integer.parseInt(data[1]), data[2], data[3],data[4]);
-                userList.add(user);
+                addUserToList(user);
             }
         } catch (IOException e) {
             System.out.println("Błąd podczas wczytywania listy użytkowników z pliku CSV.");
