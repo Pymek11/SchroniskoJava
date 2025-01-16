@@ -13,6 +13,7 @@ public class Adoption {
             this.id=id_;
         }else {
             id=generateID();
+
         }
         this.idofSubbmiter=idofSubbmiter_;
         this.idofAnimal=idofAnimal_;
@@ -21,6 +22,7 @@ public class Adoption {
     }
     private int generateID() {
         Random random = new Random();
+        this.hasid=true;
         return 100000 + random.nextInt(900000); // Losowe ID z przedziału 100000 - 999999
     }
     public boolean gethasId(){
