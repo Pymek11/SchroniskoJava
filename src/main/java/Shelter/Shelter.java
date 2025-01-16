@@ -17,7 +17,7 @@ public class Shelter {
 
         loadAnimalListFromCSV("ListaZwierzat");
         loadEmployeeListFromCSV("ListaPracownikow");
-        //loadAdoptionListFromCSV("ListaWnioskow");
+        loadAdoptionListFromCSV("ListaWnioskow");
         loadUserListFromCSV("ListaUzytkownikow");
     }
 
