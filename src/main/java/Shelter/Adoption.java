@@ -3,16 +3,15 @@ package Shelter;
 import java.util.Random;
 
 public class Adoption {
-    boolean hasid;
     private int id;
     private int idofSubbmiter;
     private int idofAnimal;
 
-    public Adoption(boolean hasid,int id_, int idofSubbmiter_, int idofAnimal_){
-        if(hasid){
-            this.id=id_;
+    public Adoption(int id_, int idofSubbmiter_, int idofAnimal_){
+        if(id == 0){
+            id = generateID();
         }else {
-            id=generateID();
+            this.id = id_;
 
         }
         this.idofSubbmiter=idofSubbmiter_;
@@ -22,11 +21,7 @@ public class Adoption {
     }
     private int generateID() {
         Random random = new Random();
-        this.hasid=true;
         return 100000 + random.nextInt(900000); // Losowe ID z przedziału 100000 - 999999
-    }
-    public boolean gethasId(){
-        return hasid;
     }
     public int getId(){
         return id;

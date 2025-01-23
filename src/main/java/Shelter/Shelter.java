@@ -28,7 +28,7 @@ public class Shelter {
             br.readLine(); // Pominięcie nagłówka
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                Animal animal = new Animal(true,Integer.parseInt(data[1]), data[2], data[3], Integer.parseInt(data[4]),Float.parseFloat(data[5]));
+                Animal animal = new Animal(Integer.parseInt(data[0]), data[1], data[2], Integer.parseInt(data[3]),Float.parseFloat(data[4]));
                 animalList.add(animal);
             }
 
@@ -45,7 +45,7 @@ public class Shelter {
             br.readLine();
             while ((line = br.readLine()) != null) {
                String[] data = line.split(",");
-                Employee employee = new Employee(true,Integer.parseInt(data[1]), data[2], data[3],data[4]);
+                Employee employee = new Employee(Integer.parseInt(data[0]), data[1], data[2],data[3]);
                 addEmployeeToList(employee);
             }
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class Shelter {
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                Adoption adoption = new Adoption(true,Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]));
+                Adoption adoption = new Adoption(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]));
                 addAdoptionApplicationToList(adoption);
             }
         } catch (IOException e) {
@@ -77,7 +77,7 @@ public class Shelter {
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                User user = new User(true,Integer.parseInt(data[1]), data[2], data[3],data[4]);
+                User user = new User(Integer.parseInt(data[0]), data[1], data[2],data[3]);
                 addUserToList(user);
             }
         } catch (IOException e) {
@@ -158,9 +158,9 @@ public class Shelter {
     public void saveAnimalListToCSV(String filename) {
         String filePath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("IdStatus,ID,Species,Breed,Age,Weight,Description,Picture\n"); // Nagłówki kolumn
+            writer.write("ID,Species,Breed,Age,Weight,Description,Picture\n"); // Nagłówki kolumn
             for (Animal animal : animalList) {
-                writer.write(animal.getHasId()+","+
+                writer.write(
                         animal.getID() + "," +
                         animal.getSpecies() + "," +
                         animal.getBreed() + "," +
@@ -179,9 +179,9 @@ public class Shelter {
     public void saveEmployeeListToCSV(String filename) {
         String filePath = "src/main/resources/" + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("IDStatus,ID,Name,Address,Email,AdoptionId\n"); // Nagłówki kolumn
+            writer.write("ID,Name,Address,Email,AdoptionId\n"); // Nagłówki kolumn
             for (User user : userList) {
-                writer.write(user.getHasId()+ ","+
+                writer.write(
                         user.getId() + "," +
                         user.getName() + ","+
                         user.getAddress() + ","+
@@ -198,9 +198,9 @@ public class Shelter {
     public void saveAdoptionListToCSV(String filename) {
         String filePath = "src/main/resources/" + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("IDStatus,IDWniosku,IDSkladajacego,IDZwierzecia\n"); // Nagłówki kolumn
+            writer.write("IDWniosku,IDSkladajacego,IDZwierzecia\n"); // Nagłówki kolumn
             for (Adoption adoption : adoptionList) {
-                writer.write(adoption.gethasId()+","+
+                writer.write(
                         adoption.getId()+","+
                         adoption.getIdofSubbmiter()+","+
                         adoption.getIdofAnimal()+"\n");
@@ -215,9 +215,9 @@ public class Shelter {
     public void saveUserListToCSV(String filename) {
         String filePath = "src/main/resources/" + filename;
         try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("IDStatus,ID,Name,Address,Email,AdoptionId\n"); // Nagłówki kolumn
+            writer.write("ID,Name,Address,Email,AdoptionId\n"); // Nagłówki kolumn
             for (User user : userList) {
-                writer.write(user.getHasId()+ ","+
+                writer.write(
                         user.getId() + "," +
                         user.getName() + ","+
                         user.getAddress() + ","+
@@ -234,10 +234,10 @@ public class Shelter {
 
     public static void main(String[] args) {
         Shelter shelter= new Shelter();
-        Animal animal = new Animal(false,0,"Pies","Mieszaniec",4, 18.5F);
-        User user = new User(false,0,"Imię","Adress", "email");
-        Adoption adoption = new Adoption(false,0,1000,10000);
-        Employee employee = new Employee(false,0,"name","add","email");
+        Animal animal = new Animal(0,"Pies","Mieszaniec",4, 18.5F);
+        User user = new User(0,"Imię","Adress", "email");
+        Adoption adoption = new Adoption(0,1000,10000);
+        Employee employee = new Employee(0,"name","add","email");
         shelter.addAdoptionApplicationToList(adoption);
         shelter.addUserToList(user);
         shelter.addAnimalToList(animal);
