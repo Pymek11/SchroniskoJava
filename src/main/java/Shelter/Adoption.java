@@ -6,13 +6,13 @@ public class Adoption {
     private int id;
     private int idofSubbmiter;
     private int idofAnimal;
+    // sposób określenia stanu adopcji - dodać jakąś zmienną
 
     public Adoption(int id_, int idofSubbmiter_, int idofAnimal_){
         if(id == 0){
             id = generateID();
         }else {
             this.id = id_;
-
         }
         this.idofSubbmiter=idofSubbmiter_;
         this.idofAnimal=idofAnimal_;

@@ -49,7 +49,7 @@ public class User {
     }
     private int generateID() {
         Random random = new Random();
-        return random.nextInt(10000); // Losowe ID z przedziału 100000 - 999999
+        return random.nextInt(10000);
     }
     private void addAdoptionId(int AdoptionId){
         adoptionIdList.add(AdoptionId);
@@ -57,8 +57,4 @@ public class User {
     public List<Integer> getAdoptionIdList() {
         return adoptionIdList;
     }
-
-
-
-
 }

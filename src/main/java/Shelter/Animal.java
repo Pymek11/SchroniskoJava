@@ -9,7 +9,8 @@ public class Animal {
     private int age;
     private float weight;
     private String description;
-    private String picture; //  ścieżka do obrazu lub URL
+    private String picture;
+    private boolean isinAddoptionprocess;//  ścieżka do obrazu lub URL
     // to do Zdjęcie;
 
     // Konstruktor nie ostawia opisu i zdjęcia
@@ -25,6 +26,7 @@ public class Animal {
         this.weight = weight;
         this.description = "";
         this.picture= "";
+        this.isinAddoptionprocess=false;
     }
 
     public int getID() {
@@ -85,6 +87,12 @@ public class Animal {
     private int generateID() {
         Random random = new Random();
         return 100000 + random.nextInt(900000); // Losowe ID z przedziału 100000 - 999999
+    }
+    public void addoptAnimal(){
+        this.isinAddoptionprocess=true;
+    }
+    public void addoptionFailed(){
+        this.isinAddoptionprocess=false;
     }
 
 }
